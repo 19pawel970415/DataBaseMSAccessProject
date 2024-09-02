@@ -304,3 +304,34 @@ All attributes are atomic, thus the database adheres to the first normal form. E
 ### Physical model
 
 ![Physical Model](images/3.png)
+
+### Tables
+
+- Faktura
+- FakturaPozycje
+- Hotel
+- Klient
+- MetodaPłatności
+- Płeć
+- Pokój
+- Pracownik
+- Rezerwacja
+- Stanowisko
+- StatusRezerwacji
+- TypPokoju
+- Województwo
+
+### Indexes
+
+- NumerFaktury
+- KodHotelu
+- IdKlienta
+- IdMetodaPłatności
+- IdPłci
+- IdPokoju
+- IdPracownika
+- IdRezerwacji
+- IdStanowiska
+- IdStatus
+- IdTypu
+- Idwojewodztwa
