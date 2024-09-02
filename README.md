@@ -601,6 +601,10 @@ Description: Contains monthly revenue for a given year. The sum of gross prices 
 ## Reports
 
 ### oblozenie_pokoi_w_danym_okresie
+
+![image](https://github.com/user-attachments/assets/d7a8857f-82d5-4a83-a080-5ddbf45610a6)
+
+
 Description: This report is generated based on the query oblozenie_pokoi_w_danym_okresie through the oblozenie_pokoi_w_danym_okresie form. It provides information on the number of reservations for a specific room number within a given time period (from January 1, 2023, to January 1, 2024), including the dates for which reservations have been made.
 
 ### oblozenie_w_danym_okresie
