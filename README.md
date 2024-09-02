@@ -293,3 +293,7 @@ All attributes are atomic, thus the database adheres to the first normal form. E
 | Enforce correct ID number format  | LLL\-000000                                     | Abc-123456                          | Database                |
 | Enforce correct bank account format | 00\ 0000\ 0000\ 0000\ 0000\ 0000\ 0000      | 82 1020 5226 0000 6102 0417 7895   | Database                |
 
+### Conceptual model
+
+![Conceptual Model](images/1.png)
+
