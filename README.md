@@ -604,41 +604,100 @@ Description: Contains monthly revenue for a given year. The sum of gross prices 
 
 ![image](https://github.com/user-attachments/assets/d7a8857f-82d5-4a83-a080-5ddbf45610a6)
 
+![image](https://github.com/user-attachments/assets/81c908f1-1dd0-41b5-9843-0f33f2cea14b)
+
+
 
 Description: This report is generated based on the query oblozenie_pokoi_w_danym_okresie through the oblozenie_pokoi_w_danym_okresie form. It provides information on the number of reservations for a specific room number within a given time period (from January 1, 2023, to January 1, 2024), including the dates for which reservations have been made.
 
 ### oblozenie_w_danym_okresie
+
+![image](https://github.com/user-attachments/assets/a3a05a14-b4b0-46f2-a34d-e18d25895bb4)
+
+![image](https://github.com/user-attachments/assets/21a02855-51ee-4f2d-95cf-9482e5d92b52)
+
+
 Description: This report is generated based on the query oblozenie_w_danym_okresie through the oblozenie_w_danym_okresie form. It provides information on the number of rooms reserved during a specified period (from … to …, with the example period being January 1, 2023, to January 1, 2024).
 
 ### oblozenie_w_danym_roku
+
+![image](https://github.com/user-attachments/assets/212f2018-fc2c-4e98-8d06-64bd1c5fd56f)
+
+![image](https://github.com/user-attachments/assets/005e963c-32fb-4fca-bd19-3435ecaf908a)
+
+
+
 Description: This report is generated based on the query oblozenie_w_danym_roku through the oblozenie_w_danym_roku form. It provides information on the number of rooms reserved in the user-specified year (in this case, the year 2023).
 
 ### oblozenie_w_danym_roku_miesieczne
+
+![image](https://github.com/user-attachments/assets/3894a1d8-040c-4f30-a3d5-bfc44fecd142)
+
+![image](https://github.com/user-attachments/assets/280f075d-db28-431b-8855-e19235cbe299)
+
+
 Description: This report is generated based on the query oblozenie_w_danym_roku_miesiecznie through the oblozenie_w_danym_roku_miesiecznie form. It provides information on the number of rooms reserved in the user-specified year, broken down by month (for example, all months of 2023).
 
 ### RaWolnePokoje
+
+![image](https://github.com/user-attachments/assets/5f693f8f-0460-442d-adec-40c3fa633706)
+
 Description: This report is generated based on the query KwWolnePokoje through the AplikacjaHotel form. It provides information on the available rooms in the hotel.
 
 ### RaZajetePokoje
+
+![image](https://github.com/user-attachments/assets/f07c1495-653d-458d-9750-7432ab71eb64)
+
 Description: This report is generated based on the query KwZajetePokoje through the AplikacjaHotel form. It provides information on the occupied rooms in the hotel.
 
 ### rezerwacjeNadchodzące
+
+![image](https://github.com/user-attachments/assets/ac1ed21d-6c7b-4fb6-9b6d-6339b9d8db23)
+
 Description: This report is generated based on the query rezerwacjeNadchodzące through the AplikacjaHotel form. It provides information on upcoming reservations in the hotel—those with an arrival date within the next 7 days.
 
 ### rezerwacjeTrwające
+
+![image](https://github.com/user-attachments/assets/0c7ba1a8-b146-403c-ac86-4cc9818707cb)
+
 Description: This report is generated based on the query rezerwacjeTrwające through the AplikacjaHotel form. It provides information on current ongoing reservations in the hotel.
 
 ### suma_przychodow_w_danym_okresie
+
+![image](https://github.com/user-attachments/assets/a26ee809-5ddd-42f3-9b50-341cbc727adc)
+
+![image](https://github.com/user-attachments/assets/3c0bc901-0b96-48ce-affa-157f0d20f6c7)
+
 Description: This report is generated based on the query suma_przychodow_w_danym_okresie through the suma_przychodow_w_danym_okresie form. It provides information on the total revenue achieved by the hotel for a specified period (from … to …, with the example period being January 1, 2023, to January 1, 2024).
 
 ### suma_przychodow_w_danym_roku
+
+![image](https://github.com/user-attachments/assets/47d7580e-7335-4036-8f90-4a7926b0d1ef)
+
+![image](https://github.com/user-attachments/assets/9e5c226d-063e-4b94-804d-4e2452b5f6e5)
+
 Description: This report is generated based on the query suma_przychodow_w_danym_roku through the suma_przychodow_w_danym_roku form. It provides information on the total revenue achieved by the hotel for the user-specified year (in this case, the year 2023).
 
 ### suma_przychodow_w_danym_roku_kwartalnie
+
+![image](https://github.com/user-attachments/assets/d782bd87-3fda-4b62-895d-3d861a263756)
+
+![image](https://github.com/user-attachments/assets/50407169-08a1-45b5-a65c-9fdee1ca55d6)
+
 Description: This report is generated based on the query suma_przychodow_w_danym_roku_kwartalnie through the suma_przychodow_w_danym_roku_kwartalnie form. It provides information on the total revenue achieved by the hotel for the user-specified year, broken down by quarters (for example, quarters of 2023).
 
 ### suma_przychodow_w_danym_roku_miesiecznie
+
+![image](https://github.com/user-attachments/assets/f2b3f98f-46bc-4e55-a9f4-c5572c159e60)
+
+![image](https://github.com/user-attachments/assets/a522cbf0-fe2a-4e0e-ac6c-433c9cd5a13b)
+
+
 Description: This report is generated based on the query suma_przychodow_w_danym_roku_miesiecznie through the suma_przychodow_w_danym_roku_miesiecznie form. It provides information on the total revenue achieved by the hotel for the user-specified year, broken down by months.
 
 ### WzórFaktury
+
+![image](https://github.com/user-attachments/assets/0a9212cc-fb35-49e5-9198-fc3bd191e81b)
+
+
 Description: This report contains the invoice template onto which data is applied when generating invoices in the Aplikacja Hotel system.
