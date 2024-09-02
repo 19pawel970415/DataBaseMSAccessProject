@@ -354,3 +354,248 @@ ON TypPokoju.[IdTypu] = Pokój.[Typpokoju];
 
 Description:
 Returns results containing three columns: IdRezerwacji, CenaBrutto, and Ilosc, where Ilosc is the result of calculations performed on the DataOdjazdu and DataPrzybycia columns from the Rezerwacja table, with an additional value of 1. CenaBrutto represents the room price from the TypPokoju table. The result includes data from the joined tables: Klient, Pokój, Rezerwacja, and TypPokoju.
+
+### KwDaneKlienta
+
+**SQL:**
+
+```sql
+SQL: SELECT Klient.IdKlienta, [Imię] & " " & [Nazwisko] AS [Imię i nazwisko], Klient.Telefon AS Telefon
+FROM Klient;
+```
+
+Description: Returns results that include three columns: "IdKlienta" - customer identifier, "[Imię i nazwisko]" - concatenated string of the customer's first and last name separated by a space, "Telefon" - customer's phone number. The result includes data from the "Klient" table, where each tuple will contain information about the customer's identifier, their first and last name, and their phone number.
+
+
+### KwDostepnePokojeWTerminie
+
+**SQL:**
+
+```sql
+PARAMETERS [Forms]![FoRezerwacja]![DataPrzybycia] DateTime, [Forms]![FoRezerwacja]![DataOdjazdu] DateTime;
+SELECT DISTINCT P.[NumerPokoju] AS Pokój, P.Typpokoju AS Typ, P.IdPokoju
+FROM Pokój AS P LEFT JOIN Rezerwacja AS R ON P.[IdPokoju] = R.Pokoj
+WHERE (
+    ((R.DataPrzybycia IS NULL AND [Forms]![FoRezerwacja]![DataPrzybycia] < [Forms]![FoRezerwacja]![DataOdjazdu])
+    OR ([Forms]![FoRezerwacja]![DataPrzybycia] < [Forms]![FoRezerwacja]![DataOdjazdu] AND R.DataOdjazdu IS NULL)
+    OR (R.DataPrzybycia IS NOT NULL AND R.DataOdjazdu IS NOT NULL AND ([Forms]![FoRezerwacja]![DataPrzybycia] >= R.DataOdjazdu OR [Forms]![FoRezerwacja]![DataOdjazdu] <= R.DataPrzybycia)))
+    OR ((R.StatusRezerwacji IN (3, 4) AND (SELECT COUNT(*) FROM Rezerwacja AS R2 WHERE R2.Pokoj = P.[IdPokoju] AND R2.IdRezerwacji <> R.IdRezerwacji AND ([Forms]![FoRezerwacja]![DataPrzybycia] >= R2.DataPrzybycia AND [Forms]![FoRezerwacja]![DataPrzybycia] < R2.DataOdjazdu) OR ([Forms]![FoReRezerwacja]![DataOdjazdu] > R2.DataPrzybycia AND [Forms]![FoRezerwacja]![DataOdjazdu] <= R2.DataOdjazdu))) = 0)
+    OR ((R.StatusRezerwacji IN (1, 2) AND (SELECT COUNT(*) FROM Rezerwacja AS R2 WHERE R2.Pokoj = P.[IdPokoju] AND R2.IdRezerwacji <> R.IdRezerwacji AND ([Forms]![FoRezerwacja]![DataPrzybycia] >= R2.DataPrzybycia AND [Forms]![FoRezerwacja]![DataPrzybycia] < R2.DataOdjazdu) OR ([Forms]![FoRezerwacja]![DataOdjazdu] > R2.DataPrzybycia AND [Forms]![FoRezerwacja]![DataOdjazdu] <= R2.DataOdjazdu)) AND R2.StatusRezerwacji IN (1, 2)) > 0))
+    AND (((SELECT COUNT(*) FROM Rezerwacja AS R3 WHERE R3.Pokoj = P.[IdPokoju] AND R3.DataPrzybycia = [Forms]![FoRezerwacja]![DataPrzybycia] AND R3.DataOdjazdu = [Forms]![FoRezerwacja]![DataOdjazdu] AND R3.StatusRezerwacji IN (3, 4)) > 0)
+    OR ((SELECT COUNT(*) FROM Rezerwacja AS R4 WHERE R4.Pokoj = P.[IdPokoju] AND R4.DataPrzybycia = [Forms]![FoRezerwacja]![DataPrzybycia] AND R4.DataOdjazdu = [Forms]![FoRezerwacja]![DataOdjazdu] AND R4.StatusRezerwacji IN (1, 2)) > 0)
+    OR ((SELECT COUNT(*) FROM Rezerwacja AS R5 WHERE R5.Pokoj = P.[IdPokoju] AND R5.DataPrzybycia = [Forms]![FoRezerwacja]![DataPrzybycia] AND R5.DataOdjazdu = [Forms]![FoRezerwacja]![DataOdjazdu]) = 0));
+```
+
+Description: Returns available hotel rooms based on the selected check-in and check-out dates from the form. It considers different booking scenarios and room availability, taking into account booking statuses and dates.
+
+
+### KwFaktura
+
+**SQL:**
+
+```sql
+SELECT Faktura.[NumerFaktury], Faktura.Firma AS FirmaKlienta, Faktura.NIP AS NIPKlienta, [Klient_1].[Imię] & " " & [Klient_1].[Nazwisko] AS Klient, Faktura.[DataWystawienia], Faktura.Opłacone, Faktura.[MetodaPłatności], "Pokój '" & [Typpokoju].Nazwa & "'" AS Pokój, FakturaPozycje.Ilość, FakturaPozycje.[Cenanetto], FakturaPozycje.[PodatekVAT], FakturaPozycje.CenaBrutto, Hotel.Nazwa AS Hotel, [Hotel].[Ulica] & " " & [Hotel].[NumerBudynku] AS Adres1, [Hotel].[Miasto] & " " & [Hotel].[KodPocztowy] AS Adres2, Hotel.Telefon, Hotel.NIP AS NIPHotelu, Hotel.[NumerRachunku]
+FROM Klient AS Klient_1 INNER JOIN (Klient INNER JOIN (Hotel INNER JOIN (TypPokoju INNER JOIN ((Pokój INNER JOIN Rezerwacja ON Pokój.[IdPokoju] = Rezerwacja.Pokoj) INNER JOIN (Faktura INNER JOIN FakturaPozycje ON Faktura.[NumerFaktury]=FakturaPozycje.[NumerFaktury]) ON Rezerwacja.IdRezerwacji=FakturaPozycje.[IdRezerwacji]) ON [Typpokoju].[IdTypu]=Pokój.[Typpokoju]) ON Hotel.[KodHotelu] = Pokój.[KodHotelu]) ON Klient.[IdKlienta] = Rezerwacja.Klient) ON Klient_1.[IdKlienta]=Faktura.[IdKlient]
+WHERE (((Faktura.NumerFaktury)=Forms![AplikacjaHotel]!PodformularzNawigacji.Form![NumerFaktury]));
+```
+
+Description: Contains detailed information related to the invoice, such as invoice number, client details, hotel details, room details, quantity, net prices, VAT, gross price, and others. The result pertains to an invoice with a specific invoice number provided from the hotel application form.
+
+
+### KwFakturaPozycje
+
+**SQL:**
+
+```sql
+SELECT Rezerwacja.Klient, Rezerwacja.[StatusRezerwacji]
+FROM StatusRezerwacji INNER JOIN (TypPokoju INNER JOIN (Pokój INNER JOIN Rezerwacja ON Pokój.[IdPokoju]=Rezerwacja.Pokoj) ON [Typpokoju].[Id Typu]=Pokój.[Typpokoju]) ON [StatusRezerwacji].[Id Status]=Rezerwacja.[StatusRezerwacji]
+WHERE (((Rezerwacja.[StatusRezerwacji])=2 Or (Rezerwacja.[StatusRezerwacji])=3));
+```
+
+Description: Returns information about clients and booking status for reservations with statuses 2 or 3. The result comes from the joined tables: StatusRezerwacji, TypPokoju, Pokój, and Rezerwacja.
+
+
+### KwPokojePosegregowane
+
+**SQL:**
+
+```sql
+SELECT Pokój.NumerPokoju, Pokój.Typpokoju
+FROM Pokój
+ORDER BY Pokój.NumerPokoju;
+```
+
+Description: Contains information about room numbers and types, sorted by room number in ascending order. The result comes from the "Pokój" table.
+
+
+### KwRezerwacjaWyborPokoju
+
+**SQL:**
+
+```sql
+SELECT Pokój.[Numer Pokoju] AS Pokój, [Typpokoju].[Liczba Osób] AS Osoby, [Typpokoju].Name, [Typpokoju].[Ilość łóżek] AS Łóżka
+FROM TypPokoju INNER JOIN Pokój ON [Typpokoju].[Id Typu]=Pokój.[Typ pokoju];
+```
+
+Description: Contains information regarding room numbers, number of people, room type names, and number of beds. The result comes from the "TypPokoju" and "Pokój" tables, with data joined based on room type and category identifiers.
+
+
+### KwWolnePokoje
+
+**SQL:**
+
+```sql
+SELECT Pokój.[Id Pokoju], Pokój.[Numer Pokoju] AS Pokój, [Typpokoju].Nazwa, [Typpokoju].[Liczba Osób]
+FROM TypPokoju INNER JOIN Pokój ON [Typpokoju].[Id Typu]=Pokój.[Typ pokoju]
+WHERE (((Pokój.[Czy dostępny])=Yes));
+```
+
+Description: Contains information about available rooms, including room ID, room number, room type name, and number of people. It returns only rooms that are available.
+
+
+### KwZajetePokoje
+
+**SQL:**
+
+```sql
+SELECT Pokój.[NumerPokoju], Pokój.[Typpokoju], [Typpokoju].[Liczba Osób]
+FROM TypPokoju INNER JOIN Pokój ON [Typpokoju].[Id Typu]=Pokój.[Typpokoju]
+WHERE (((Pokój.[Czydostępny])=No));
+```
+
+Description: Contains information about rooms marked as unavailable, including room number, room type, and number of people. The result comes from the "Pokój" table.
+
+
+### oblozenie_pokoi_w_danym_okresie
+
+**SQL:**
+
+```sql
+SELECT r.Pokoj, Count(r.Pokoj) AS oblozenie, r.DataPrzybycia AS Od, r.DataOdjazdu AS Do
+FROM Rezerwacja AS r
+WHERE (((r.DataPrzybycia) Between Forms!oblozenie_pokoi_w_danym_okresie!DataPrzyjazdu And Forms!oblozenie_pokoi_w_danym_okresie!DataOdjazdu) And ((r.DataOdjazdu) Between Forms!oblozenie_pokoi_w_danym_okresie!DataPrzyjazdu And Forms!oblozenie_pokoi_w_danym_okresie!DataOdjazdu))
+GROUP BY r.Pokoj, r.DataPrzybycia, r.DataOdjazdu
+ORDER BY r.Pokoj DESC;
+```
+
+Description: Contains information about room occupancy in a specified period. Results are grouped by room number, arrival date, and departure date, allowing for the analysis of occupancy over time.
+
+
+### oblozenie_w_danym_okresie
+
+**SQL:**
+
+```sql
+SELECT Count(r.Pokoj) AS oblozenie, Format(Forms!oblozenie_w_danym_okresie!DataPrzyjazdu,"dd/mm/yyyy") AS Od, Format(Forms!oblozenie_w_danym_okresie!DataOdjazdu,"dd/mm/yyyy") AS Do
+FROM Rezerwacja AS r
+WHERE (((r.DataPrzybycia) Between Forms!oblozenie_w_danym_okresie!DataPrzyjazdu And Forms!oblozenie_w_danym_okresie!DataOdjazdu)  AND ((r.DataOdjazdu) Between Forms!oblozenie_w_danym_okresie!DataPrzyjazdu And Forms!oblozenie_w_danym_okresie!DataOdjazdu));
+```
+
+Description: Contains overall occupancy for all rooms in a specified period. Occupancy is counted as the number of reservations within the given period. The "From" and "To" dates are formatted based on the form.
+
+
+### oblozenie_w_danym_roku
+
+**SQL:**
+
+```sql
+SELECT Count(r.Pokoj) AS oblozenie, Forms!oblozenie_w_danym_roku!RokRaport AS rok
+FROM Rezerwacja AS r
+WHERE YEAR(r.DataPrzybycia) = Forms!oblozenie_w_danym_roku!RokRaport AND YEAR(r.DataOdjazdu) = Forms!oblozenie_w_danym_roku!RokRaport;
+```
+
+Description: Contains monthly room occupancy for a given year based on reservations. Occupancy is calculated for each month of the year, with missing data in a given month showing a value of 0.
+
+### oblozenie_w_danym_roku_miesieczne
+
+**SQL:**
+
+```sql
+SELECT IIf(IsNull(r.oblozenie),0,r.oblozenie) AS oblozenie, m.rok, m.miesiac
+FROM (SELECT DISTINCT Year(DataPrzybycia) AS rok, 1 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 2 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 3 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 4 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 5 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 6 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 7 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 8 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 9 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 10 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 11 AS miesiac FROM Rezerwacja     UNION ALL SELECT DISTINCT Year(DataPrzybycia) AS rok, 12 AS miesiac FROM Rezerwacja )  AS m LEFT JOIN (SELECT Count(IdRezerwacji) AS oblozenie, Year(DataPrzybycia) AS rok, Month(DataPrzybycia) AS miesiac FROM Rezerwacja WHERE Year(DataPrzybycia) = Forms!oblozenie_w_danym_roku_miesiecznie!RokRaport     AND Year(DataOdjazdu) = Forms!oblozenie_w_danym_roku_miesiecznie!RokRaport GROUP BY Year(DataPrzybycia), Month(DataPrzybycia))  AS r ON (m.miesiac = r.miesiac) AND (m.rok = r.rok)
+WHERE m.rok = Forms!oblozenie_w_danym_roku_miesiecznie!RokRaport
+ORDER BY m.rok, m.miesiac;
+```
+
+Description: Contains monthly room occupancy for a given year based on reservations. Occupancy is calculated for each month of the year, with missing data in a given month showing a value of 0.
+
+
+### rezerwacjeNadchodzące
+
+**SQL:**
+
+```sql
+SELECT R.IdRezerwacji, P.NumerPokoju, R.DataPrzybycia
+FROM Pokój AS P INNER JOIN Rezerwacja AS R ON P.IdPokoju = R.Pokoj
+WHERE (((R.DataPrzybycia) Between Date() And Date()+7) AND ((R.StatusRezerwacji)=1));
+```
+
+Description: Contains information about upcoming reservations (within the next week from today) and reservation status (status 1). The result includes reservation ID, room number, and arrival date.
+
+
+### rezerwacjeTrwające
+
+**SQL:**
+
+```sql
+SELECT R.IdRezerwacji, P.NumerPokoju, R.DataOdjazdu
+FROM Pokój AS P INNER JOIN Rezerwacja AS R ON P.IdPokoju = R.Pokoj
+WHERE (((R.StatusRezerwacji)=2));
+```
+
+Description: Contains information about currently ongoing reservations (status 2). The result includes reservation ID, room number, and departure date.
+
+
+### suma_przychodow_w_danym_okresie
+
+**SQL:**
+
+```sql
+SELECT Sum(fp.CenaBrutto) AS przychody, Format(Forms!suma_przychodow_w_danym_okresie!DataPrzyjazdu,"dd/mm/yyyy") AS Od, Format(Forms!suma_przychodow_w_danym_okresie!DataOdjazdu,"dd/mm/yyyy") AS Do
+FROM FakturaPozycje AS fp, Faktura AS f
+WHERE (((f.DataWystawienia) Between Forms!suma_przychodow_w_danym_okresie!DataPrzyjazdu And Forms!suma_przychodow_w_danym_okresie!DataOdjazdu) And ((fp.NumerFaktury)=f.NumerFaktury));
+```
+
+Description: Contains total revenue for a specified period. Revenue is calculated based on invoices and their items issued during that period. The "From" and "To" dates are formatted according to the form.
+
+### suma_przychodow_w_danym_roku
+
+**SQL:**
+
+```sql
+SELECT SUM(fp.CenaBrutto) AS przychody, Forms!suma_przychodow_w_danym_roku!RokRaport AS rok
+FROM FakturaPozycje AS fp, Faktura AS f
+WHERE (YEAR(f.DataWystawienia) = Forms!suma_przychodow_w_danym_roku!RokRaport) AND ((fp.NumerFaktury)=f.NumerFaktury);
+```
+
+Description: Contains total revenue for a specified year. Revenue is calculated based on invoices and their items for that year.
+
+
+### suma_przychodow_w_danym_roku_kwartalnie
+
+**SQL:**
+
+```sql
+SELECT IIf(IsNull(fp.przychody),0,fp.przychody) AS przychody, m.rok, m.kwartal
+FROM (SELECT DISTINCT Year(DataWystawienia) AS rok, 1 AS kwartal FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 2 AS kwartal FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 3 AS kwartal FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 4 AS kwartal FROM Faktura )  AS m LEFT JOIN (SELECT Year(DataWystawienia) AS rok, IIf(Month(DataWystawienia) In (1,2,3),1,IIf(Month(DataWystawienia) In (4,5,6),2,IIf(Month(DataWystawienia) In (7,8,9),3,4))) AS kwartal, Sum(CenaBrutto) AS przychody FROM FakturaPozycje INNER JOIN Faktura ON FakturaPozycje.NumerFaktury = Faktura.NumerFaktury GROUP BY Year(DataWystawienia), IIf(Month(DataWystawienia) In (1,2,3),1,IIf(Month(DataWystawienia) In (4,5,6),2,IIf(Month(DataWystawienia) In (7,8,9),3,4))))  AS fp ON (m.kwartal = fp.kwartal) AND (m.rok = fp.rok)
+WHERE m.rok = Forms!suma_przychodow_w_danym_roku_kwartalnie!RokRaport
+ORDER BY m.rok, m.kwartal;
+```
+
+Description: Contains quarterly revenue for a specified year. It calculates the sum of revenue for each quarter of the year based on invoices and their items.
+
+### suma_przychodow_w_danym_roku_miesiecznie
+
+**SQL:**
+
+```sql
+SELECT NZ(Sum(fp.CenaBrutto),0) AS przychody, m.rok, m.miesiac
+FROM (SELECT DISTINCT Year(DataWystawienia) AS rok, 1 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 2 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 3 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 4 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 5 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 6 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 7 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 8 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 9 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 10 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 11 AS miesiac FROM Faktura     UNION ALL SELECT DISTINCT Year(DataWystawienia) AS rok, 12 AS miesiac FROM Faktura )  AS m LEFT JOIN (SELECT Year(DataWystawienia) AS rok, Month(DataWystawienia) AS miesiac, CenaBrutto FROM FakturaPozycje INNER JOIN Faktura ON FakturaPozycje.NumerFaktury = Faktura.NumerFaktury)  AS fp ON (m.miesiac = fp.miesiac) AND (m.rok = fp.rok)
+WHERE m.rok = Forms!suma_przychodow_w_danym_roku_miesiecznie!RokRaport
+GROUP BY m.rok, m.miesiac
+ORDER BY m.rok, m.miesiac;
+```
+
+Description: Contains monthly revenue for a given year. The sum of gross prices from invoice items is grouped by year and month, with missing data in a given month showing a value of 0.
+
+
