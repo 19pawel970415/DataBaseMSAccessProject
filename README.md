@@ -598,4 +598,43 @@ ORDER BY m.rok, m.miesiac;
 
 Description: Contains monthly revenue for a given year. The sum of gross prices from invoice items is grouped by year and month, with missing data in a given month showing a value of 0.
 
+## Reports
 
+### oblozenie_pokoi_w_danym_okresie
+Description: This report is generated based on the query oblozenie_pokoi_w_danym_okresie through the oblozenie_pokoi_w_danym_okresie form. It provides information on the number of reservations for a specific room number within a given time period (from January 1, 2023, to January 1, 2024), including the dates for which reservations have been made.
+
+### oblozenie_w_danym_okresie
+Description: This report is generated based on the query oblozenie_w_danym_okresie through the oblozenie_w_danym_okresie form. It provides information on the number of rooms reserved during a specified period (from … to …, with the example period being January 1, 2023, to January 1, 2024).
+
+### oblozenie_w_danym_roku
+Description: This report is generated based on the query oblozenie_w_danym_roku through the oblozenie_w_danym_roku form. It provides information on the number of rooms reserved in the user-specified year (in this case, the year 2023).
+
+### oblozenie_w_danym_roku_miesieczne
+Description: This report is generated based on the query oblozenie_w_danym_roku_miesiecznie through the oblozenie_w_danym_roku_miesiecznie form. It provides information on the number of rooms reserved in the user-specified year, broken down by month (for example, all months of 2023).
+
+### RaWolnePokoje
+Description: This report is generated based on the query KwWolnePokoje through the AplikacjaHotel form. It provides information on the available rooms in the hotel.
+
+### RaZajetePokoje
+Description: This report is generated based on the query KwZajetePokoje through the AplikacjaHotel form. It provides information on the occupied rooms in the hotel.
+
+### rezerwacjeNadchodzące
+Description: This report is generated based on the query rezerwacjeNadchodzące through the AplikacjaHotel form. It provides information on upcoming reservations in the hotel—those with an arrival date within the next 7 days.
+
+### rezerwacjeTrwające
+Description: This report is generated based on the query rezerwacjeTrwające through the AplikacjaHotel form. It provides information on current ongoing reservations in the hotel.
+
+### suma_przychodow_w_danym_okresie
+Description: This report is generated based on the query suma_przychodow_w_danym_okresie through the suma_przychodow_w_danym_okresie form. It provides information on the total revenue achieved by the hotel for a specified period (from … to …, with the example period being January 1, 2023, to January 1, 2024).
+
+### suma_przychodow_w_danym_roku
+Description: This report is generated based on the query suma_przychodow_w_danym_roku through the suma_przychodow_w_danym_roku form. It provides information on the total revenue achieved by the hotel for the user-specified year (in this case, the year 2023).
+
+### suma_przychodow_w_danym_roku_kwartalnie
+Description: This report is generated based on the query suma_przychodow_w_danym_roku_kwartalnie through the suma_przychodow_w_danym_roku_kwartalnie form. It provides information on the total revenue achieved by the hotel for the user-specified year, broken down by quarters (for example, quarters of 2023).
+
+### suma_przychodow_w_danym_roku_miesiecznie
+Description: This report is generated based on the query suma_przychodow_w_danym_roku_miesiecznie through the suma_przychodow_w_danym_roku_miesiecznie form. It provides information on the total revenue achieved by the hotel for the user-specified year, broken down by months.
+
+### WzórFaktury
+Description: This report contains the invoice template onto which data is applied when generating invoices in the Aplikacja Hotel system.
