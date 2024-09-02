@@ -336,7 +336,9 @@ All attributes are atomic, thus the database adheres to the first normal form. E
 - IdTypu
 - Idwojewodztwa
 
-## Kwerendy
+
+
+## Queries
 
 ### KwDaneDoFakturaPozycje
 
@@ -598,6 +600,8 @@ ORDER BY m.rok, m.miesiac;
 
 Description: Contains monthly revenue for a given year. The sum of gross prices from invoice items is grouped by year and month, with missing data in a given month showing a value of 0.
 
+
+
 ## Reports
 
 ### oblozenie_pokoi_w_danym_okresie
@@ -701,3 +705,213 @@ Description: This report is generated based on the query suma_przychodow_w_danym
 
 
 Description: This report contains the invoice template onto which data is applied when generating invoices in the Aplikacja Hotel system.
+
+
+
+## Forms
+
+
+### AplikacjaHotel
+
+![image](https://github.com/user-attachments/assets/c443eb1e-1d8f-4f84-9dad-708360c11c4e)
+![image](https://github.com/user-attachments/assets/2fadba07-036c-4b73-aa25-eacf30c7b546)
+![image](https://github.com/user-attachments/assets/a792e0d5-0311-4596-a3a4-91805d291e96)
+![image](https://github.com/user-attachments/assets/7d731016-d895-469e-bcdb-5f507a5bd41d)
+![image](https://github.com/user-attachments/assets/db3c2b01-dd88-4b93-a9f8-301a377358eb)
+![image](https://github.com/user-attachments/assets/38e7673c-b1d7-49fb-9c2d-6f4b5e7fdec9)
+![image](https://github.com/user-attachments/assets/17d08322-54c7-4576-88f6-0e1d23f15c4e)
+![image](https://github.com/user-attachments/assets/b5c6b52c-6997-4c7c-a7b7-9cd8ae1c4554)
+![image](https://github.com/user-attachments/assets/c238d0d1-a386-4c88-937e-f91d6801826d)
+![image](https://github.com/user-attachments/assets/95625108-6dda-4b0a-9199-584f62e8ed8c)
+![image](https://github.com/user-attachments/assets/8fbe7e7b-1ab8-49fe-9f6d-f5bd9e2f4c24)
+![image](https://github.com/user-attachments/assets/780ec303-da6a-4b31-af38-e2267fdbaaae)
+![image](https://github.com/user-attachments/assets/0a5e6897-e33f-4a0e-86c5-7fb07c762fae)
+![image](https://github.com/user-attachments/assets/b25be61a-2d25-41df-8cee-1230ea967277)
+
+
+Description: This form is a fundamental part of the GUI for the project. It allows for checking in and checking out guests, as well as canceling previously made reservations. It includes a room reservation system for selecting stay dates, checking room availability for the specified dates, choosing a room, and making a reservation. It also manages all project tables and generates and prints invoices. Additionally, it provides access to generate the reports mentioned above.
+
+### FoFaktura
+
+![image](https://github.com/user-attachments/assets/07f591f2-257e-4dec-b775-c6d316aa6f30)
+
+
+Description: This form allows for generating and printing invoices using the invoice template filled with information from the relevant fields in the form, such as VAT number, company name, etc.
+
+### FoFakturaPozycje
+
+![image](https://github.com/user-attachments/assets/0bb5841e-6c72-49a9-9445-0699e0669af5)
+
+
+Description: This form allows for deleting invoices.
+
+### FoHotel
+
+![image](https://github.com/user-attachments/assets/63032ec4-e010-49da-801d-483a59b6d944)
+
+
+Description: This form displays information about a specific hotel.
+
+### FoInneFormularze
+
+![image](https://github.com/user-attachments/assets/f14137d9-4333-4984-b209-e1365aabd164)
+![image](https://github.com/user-attachments/assets/f47e7af2-8c83-4bfa-8bf1-bfae634acddf)
+![image](https://github.com/user-attachments/assets/8ff5ac05-cbe7-4970-9152-973234c13116)
+![image](https://github.com/user-attachments/assets/62ac250e-46fa-4197-85ae-8c97557567ea)
+![image](https://github.com/user-attachments/assets/9fb4d69a-bf41-4ed1-a992-bdaa71ad5906)
+
+
+Description: This form allows for managing the tables for Hotel, RoomType, PaymentMethod, Employee, and Position.
+
+### FoKlient
+
+![image](https://github.com/user-attachments/assets/4868f30b-2e82-4e3f-951e-694c221b13a5)
+
+
+Description: This form allows for managing the Client table.
+
+### FoMetodaPłatności
+
+![image](https://github.com/user-attachments/assets/251c27fa-d831-4958-a576-2cff891cda5c)
+
+
+Description: This form allows for managing the PaymentMethod table.
+
+### FoPokoje
+
+![image](https://github.com/user-attachments/assets/5ae5c1f7-577f-41de-80a3-caa9fd434e16)
+
+
+Description: This form displays rooms.
+
+### FoPracownik
+
+![image](https://github.com/user-attachments/assets/b37a1bf6-2a1c-42fd-8fc7-075e3be1b590)
+
+
+Description: This form allows for managing the Employee table.
+
+### FoRaporty
+
+![image](https://github.com/user-attachments/assets/0160aa24-1c3e-4bff-a38d-71824374dd8f)
+
+
+Description: This form allows for generating all project reports through the appropriate forms.
+
+### FoRezerwacja
+
+![image](https://github.com/user-attachments/assets/2b07221a-4ddc-4274-ae1f-8d443e8ec241)
+
+
+Description: This form allows for managing the Reservation table.
+
+### FoRezerwacjeNadchodzące
+
+![image](https://github.com/user-attachments/assets/38cef5fb-7c82-40a8-8480-7b60117a7613)
+
+
+Description: This form allows for checking in and canceling reservations.
+
+### FoRezerwacjeTrwające
+
+![image](https://github.com/user-attachments/assets/c75b3f01-a3d1-4d61-8a98-856f87a1f3ef)
+
+
+Description: This form allows for checking out a guest from a room.
+
+### FoSkracanie
+
+![image](https://github.com/user-attachments/assets/cb3e5c18-ce6e-470f-94eb-84206efbb860)
+
+
+Description: This form allows for shortening a stay.
+
+### FoStanowisko
+
+![image](https://github.com/user-attachments/assets/3ac490e9-30a0-41c5-94e6-56426f933639)
+
+
+Description: This form allows for managing the Position table.
+
+### FoTypPokoju
+
+![image](https://github.com/user-attachments/assets/a38f6489-6b83-485c-bedf-20b9a2db014b)
+
+
+Description: This form allows for managing the RoomType table.
+
+### ListaPokoiDoPrzedluzenia
+
+![image](https://github.com/user-attachments/assets/5e3250fd-23fc-4de3-8a41-6b6810581f50)
+![image](https://github.com/user-attachments/assets/d45f0c35-92f5-484d-801e-64c867fef41b)
+
+
+Description: This form allows for extending a stay.
+
+### oblozenie_pokoi_w_danym_okresie
+
+![image](https://github.com/user-attachments/assets/5c022b5e-2979-4326-8aa3-1e3e578547a5)
+![image](https://github.com/user-attachments/assets/9758cb57-c03a-474d-9ea9-7f62e90e879f)
+
+
+Description: This form allows for generating the oblozenie_pokoi_w_danym_okresie report by entering the data for which the report should be generated (e.g., from January 1, 2023, to January 1, 2024).
+
+### oblozenie_w_danym_okresie
+
+![image](https://github.com/user-attachments/assets/ea6d83ab-353c-416a-84b7-1aac3ade865e)
+![image](https://github.com/user-attachments/assets/fcd11831-8a81-45d9-8a5e-7b7fed76c78a)
+
+
+Description: This form allows for generating the oblozenie_w_danym_okresie report by entering the data for which the report should be generated (e.g., from January 1, 2023, to January 1, 2024).
+
+### oblozenie_w_danym_roku
+
+![image](https://github.com/user-attachments/assets/77dbf0bc-d670-40fe-8ed7-cb0cd0eac905)
+![image](https://github.com/user-attachments/assets/1c6e78bd-90f1-4491-8669-df16e5e95dbc)
+
+
+Description: This form allows for generating the oblozenie_w_danym_roku report by entering the data for which the report should be generated (e.g., for the year 2023).
+
+### oblozenie_w_danym_roku_miesiecznie
+
+![image](https://github.com/user-attachments/assets/cfa69e12-427f-4e2f-96c9-601200d07f2e)
+![image](https://github.com/user-attachments/assets/a1368649-de72-498c-badb-cbe3b82f74ed)
+
+
+Description: This form allows for generating the oblozenie_w_danym_roku_miesiecznie report by entering the data for which the report should be generated (e.g., for the year 2023).
+
+### suma_przychodow_w_danym_okresie
+
+![image](https://github.com/user-attachments/assets/a4508815-9419-4324-9c67-8b45d8f44254)
+![image](https://github.com/user-attachments/assets/d11ddd68-d773-4961-9986-44e19abf993e)
+
+Description: This form allows for generating the suma_przychodow_w_danym_okresie report by entering the data for which the report should be generated (e.g., from January 1, 2023, to January 1, 2024).
+
+### suma_przychodow_w_danym_roku
+
+![image](https://github.com/user-attachments/assets/cdf70380-261f-40bb-9419-fcde0d3f4634)
+![image](https://github.com/user-attachments/assets/5d487d48-0c48-4729-9dc2-53e5af5b67a0)
+
+Description: This form allows for generating the suma_przychodow_w_danym_roku report by entering the data for which the report should be generated (e.g., for the year 2023).
+
+### suma_przychodow_w_danym_roku_kwartalnie
+
+![image](https://github.com/user-attachments/assets/8a21a9e5-e873-41de-8ac1-2c686d579ddf)
+![image](https://github.com/user-attachments/assets/7ace57e6-6a96-484f-adf9-95a1857cd79e)
+
+
+Description: This form allows for generating the suma_przychodow_w_danym_roku_kwartalnie report by entering the data for which the report should be generated (e.g., for the year 2023).
+
+### suma_przychodow_w_danym_roku_miesiecznie
+
+![image](https://github.com/user-attachments/assets/659ba1fe-338d-483c-af88-07d11b9c9bae)
+![image](https://github.com/user-attachments/assets/f165e6cd-9ec2-4add-8772-78c6ba58ff99)
+
+
+Description: This form allows for generating the suma_przychodow_w_danym_roku_miesiecznie report by entering the data for which the report should be generated (e.g., for the year 2023).
+
+### wolne_pokoje_w_danym_terminie
+
+![image](https://github.com/user-attachments/assets/fa5c1d8e-cfa0-4424-aa85-519ef26199eb)
+
+Description: This form allows for displaying a list of available rooms using data retrieved from the AplikacjaHotel form (e.g., from January 1, 2023, to January 1, 2024).
