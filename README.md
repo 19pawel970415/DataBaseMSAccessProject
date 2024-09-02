@@ -300,3 +300,7 @@ All attributes are atomic, thus the database adheres to the first normal form. E
 ### Logical model
 
 ![Logical Model](images/2.png)
+
+### Physical model
+
+![Physical Model](images/3.png)
