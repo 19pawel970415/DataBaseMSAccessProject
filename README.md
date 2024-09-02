@@ -350,6 +350,7 @@ INNER JOIN (Klient
 INNER JOIN Rezerwacja ON Klient.[IdKlienta] = Rezerwacja.Klient) 
 ON Pokój.[IdPokoju] = Rezerwacja.Pokoj) 
 ON TypPokoju.[IdTypu] = Pokój.[Typpokoju];
+```
 
 Description:
 Returns results containing three columns: IdRezerwacji, CenaBrutto, and Ilosc, where Ilosc is the result of calculations performed on the DataOdjazdu and DataPrzybycia columns from the Rezerwacja table, with an additional value of 1. CenaBrutto represents the room price from the TypPokoju table. The result includes data from the joined tables: Klient, Pokój, Rezerwacja, and TypPokoju.
