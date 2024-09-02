@@ -11,82 +11,82 @@ The database contains information about rooms, bookings, payments and their meth
 
 ### Table of Contents
 
-1. **User Guide** — 5
-2. **Project Background Description** — 5
-3. **Project Description** — 5
-4. **Normalization/Denormalization** — 5
-5. **Database Model** — 6
-   - Entities — 6
-   - Attributes — 6
-   - Relationships — 10
-6. **Table Listing** — 11
-7. **Business Rules** — 12
-8. **Conceptual Model** — 13
-9. **Logical Model** — 14
-10. **Physical Model** — 15
-11. **Table Index Listing** — 16
-12. **Queries** — 17
-    - KwDaneDoFakturaPozycje — 17
-    - KwDaneKlienta — 17
-    - KwDostepnePokojeWTerminie — 18
-    - KwFaktura — 21
-    - KwFakturaPozycje — 22
-    - KwPokojePosegregowane — 23
-    - KwRezerwacjaWyborPokoju — 24
-    - KwWolnePokoje — 26
-    - KwZajetePokoje — 26
-    - oblozenie_pokoi_w_danym_okresie — 27
-    - oblozenie_w_danym_okresie — 28
-    - oblozenie_w_danym_roku — 29
-    - oblozenie_w_danym_roku_miesieczne — 29
-    - rezerwacjeNadchodzące — 31
-    - rezerwacjeTrwające — 31
-    - suma_przychodow_w_danym_okresie — 32
-    - suma_przychodow_w_danym_roku — 33
-    - suma_przychodow_w_danym_roku_kwartalnie — 33
-    - suma_przychodow_w_danym_roku_miesiecznie — 35
-13. **Reports** — 37
-    - oblozenie_pokoi_w_danym_okresie — 37
-    - oblozenie_w_danym_okresie — 38
-    - oblozenie_w_danym_roku — 39
-    - oblozenie_w_danym_roku_miesieczne — 39
-    - RaWolnePokoje — 41
-    - RaZajetePokoje — 42
-    - rezerwacjeNadchodzące — 42
-    - rezerwacjeTrwające — 43
-    - suma_przychodow_w_danym_okresie — 43
-    - suma_przychodow_w_danym_roku — 44
-    - suma_przychodow_w_danym_roku_kwartalnie — 45
-    - suma_przychodow_w_danym_roku_miesiecznie — 46
-14. **Templates** — 47
-    - WzórFaktury — 47
-15. **Forms** — 48
-    - AplikacjaHotel — 48
-    - FoFaktura — 61
-    - FoFakturaPozycje — 61
-    - FoHotel — 62
-    - FoInneFormularze — 62
-    - FoKlient — 65
-    - FoMetodaPłatności — 65
-    - FoPokoje — 66
-    - FoPracownik — 67
-    - FoRaporty — 68
-    - FoRezerwacja — 68
-    - FoRezerwacjeNadchodzące — 69
-    - FoRezerwacjeTrwające — 69
-    - FoSkracanie — 70
-    - FoStanowisko — 70
-    - FoTypPokoju — 71
-    - ListaPokoiDoPrzedluzenia — 72
-    - oblozenie_pokoi_w_danym_okresie — 74
-    - oblozenie_w_danym_okresie — 75
-    - oblozenie_w_danym_roku — 76
-    - oblozenie_w_danym_roku_miesiecznie — 76
-    - suma_przychodow_w_danym_okresie — 77
-    - suma_przychodow_w_danym_roku — 78
-    - suma_przychodow_w_danym_roku_kwartalnie — 79
-    - suma_przychodow_w_danym_roku_miesiecznie — 79
-    - wolne_pokoje_w_danym_terminie — 81
+1. **User Guide**
+2. **Project Background Description**
+3. **Project Description**
+4. **Normalization/Denormalization**
+5. **Database Model**
+   - Entities
+   - Attributes
+   - Relationships
+6. **Table Listing**
+7. **Business Rules**
+8. **Conceptual Model**
+9. **Logical Model**
+10. **Physical Model**
+11. **Table Index Listing**
+12. **Queries**
+    - KwDaneDoFakturaPozycje
+    - KwDaneKlienta
+    - KwDostepnePokojeWTerminie
+    - KwFaktura
+    - KwFakturaPozycje
+    - KwPokojePosegregowane
+    - KwRezerwacjaWyborPokoju
+    - KwWolnePokoje
+    - KwZajetePokoje
+    - oblozenie_pokoi_w_danym_okresie
+    - oblozenie_w_danym_okresie
+    - oblozenie_w_danym_roku
+    - oblozenie_w_danym_roku_miesieczne
+    - rezerwacjeNadchodzące
+    - rezerwacjeTrwające
+    - suma_przychodow_w_danym_okresie
+    - suma_przychodow_w_danym_roku
+    - suma_przychodow_w_danym_roku_kwartalnie
+    - suma_przychodow_w_danym_roku_miesiecznie
+13. **Reports**
+    - oblozenie_pokoi_w_danym_okresie
+    - oblozenie_w_danym_okresie
+    - oblozenie_w_danym_roku
+    - oblozenie_w_danym_roku_miesieczne
+    - RaWolnePokoje
+    - RaZajetePokoje
+    - rezerwacjeNadchodzące
+    - rezerwacjeTrwające
+    - suma_przychodow_w_danym_okresie
+    - suma_przychodow_w_danym_roku
+    - suma_przychodow_w_danym_roku_kwartalnie
+    - suma_przychodow_w_danym_roku_miesiecznie
+14. **Templates**
+    - WzórFaktury
+15. **Forms**
+    - AplikacjaHotel
+    - FoFaktura
+    - FoFakturaPozycje
+    - FoHotel
+    - FoInneFormularze
+    - FoKlient
+    - FoMetodaPłatności
+    - FoPokoje
+    - FoPracownik
+    - FoRaporty
+    - FoRezerwacja
+    - FoRezerwacjeNadchodzące
+    - FoRezerwacjeTrwające
+    - FoSkracanie
+    - FoStanowisko
+    - FoTypPokoju
+    - ListaPokoiDoPrzedluzenia
+    - oblozenie_pokoi_w_danym_okresie
+    - oblozenie_w_danym_okresie
+    - oblozenie_w_danym_roku
+    - oblozenie_w_danym_roku_miesiecznie
+    - suma_przychodow_w_danym_okresie
+    - suma_przychodow_w_danym_roku
+    - suma_przychodow_w_danym_roku_kwartalnie
+    - suma_przychodow_w_danym_roku_miesiecznie
+    - wolne_pokoje_w_danym_terminie
 
 ---
 
