@@ -699,6 +699,9 @@ Description: This report is generated based on the query suma_przychodow_w_danym
 
 Description: This report is generated based on the query suma_przychodow_w_danym_roku_miesiecznie through the suma_przychodow_w_danym_roku_miesiecznie form. It provides information on the total revenue achieved by the hotel for the user-specified year, broken down by months.
 
+
+## Templates
+
 ### WzórFaktury
 
 ![image](https://github.com/user-attachments/assets/0a9212cc-fb35-49e5-9198-fc3bd191e81b)
