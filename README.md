@@ -335,3 +335,5 @@ All attributes are atomic, thus the database adheres to the first normal form. E
 - IdStatus
 - IdTypu
 - Idwojewodztwa
+
+
