@@ -1,6 +1,6 @@
-This is a fully documented MS Access project for a hotel being a part of the University of Lodz DBs course
+An MS Access project of a Hotel being a part of the University of Lodz DBs course
 
-## DATABASE – HOTEL
+# HOTEL - management system
 
 **Authors:** Paweł Żurawski, Patryk Mielke
 
