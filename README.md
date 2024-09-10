@@ -1,4 +1,4 @@
-An MS Access project of a Hotel being a part of the University of Lodz DBs course
+An MS Access project of a Hotel being a part of the University of Lodz DBs course.
 
 # HOTEL - management system
 
